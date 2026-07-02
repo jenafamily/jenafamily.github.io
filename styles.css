@@ -1,0 +1,1857 @@
+:root {
+  --maroon: #750914;
+  --maroon-dark: #43060b;
+  --gold: #c98424;
+  --gold-light: #f3c982;
+  --saffron: #e19b22;
+  --marigold: #f4b12d;
+  --rose: #d93d59;
+  --paper: #fff4e1;
+  --paper-deep: #f7dfba;
+  --ink: #5a1420;
+  --leaf: #2d7a38;
+  --shadow: 0 18px 46px rgba(54, 14, 12, 0.24);
+  --pink: #e91e63;
+  --orange: #ff9800;
+  --green: #4caf50;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Noto Sans Oriya", system-ui, sans-serif;
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(250, 186, 76, 0.35), transparent 34rem),
+    radial-gradient(circle at 12% 16%, rgba(255, 211, 116, 0.32), transparent 17rem),
+    radial-gradient(circle at 88% 13%, rgba(244, 101, 72, 0.28), transparent 18rem),
+    radial-gradient(circle at 50% 50%, rgba(233, 30, 99, 0.15) 0 10rem, transparent 10rem),
+    radial-gradient(circle at 20% 80%, rgba(76, 175, 80, 0.12) 0 8rem, transparent 8rem),
+    radial-gradient(circle at 80% 80%, rgba(76, 175, 80, 0.12) 0 8rem, transparent 8rem),
+    /* Subtle diagonal Indian pattern */
+    repeating-linear-gradient(45deg, rgba(255, 211, 116, 0.05) 0px, transparent 0px 25px, rgba(217, 61, 89, 0.03) 25px, transparent 25px 50px),
+    linear-gradient(145deg, rgba(42, 6, 12, 0.97), rgba(105, 15, 18, 0.93) 45%, rgba(43, 8, 8, 0.97)),
+    url("assets/opening-demo.png") center top / cover fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body.invite-locked {
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 50% 5%, rgba(255, 220, 126, 0.2), transparent 20rem),
+    radial-gradient(ellipse at 50% 92%, rgba(243, 159, 49, 0.2), transparent 18rem),
+    repeating-linear-gradient(90deg, rgba(255, 204, 122, 0.045) 0 1px, transparent 1px 90px),
+    linear-gradient(rgba(31, 5, 8, 0.68), rgba(83, 13, 14, 0.66));
+  backdrop-filter: blur(2px) saturate(1.12);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 100%, transparent 0 7rem, rgba(245, 174, 50, 0.28) 7.15rem 7.35rem, transparent 7.5rem),
+    radial-gradient(circle at 50% 100%, transparent 0 10.6rem, rgba(255, 232, 168, 0.18) 10.75rem 10.95rem, transparent 11.1rem),
+    radial-gradient(circle at 50% 100%, transparent 0 14rem, rgba(214, 55, 72, 0.16) 14.2rem 14.35rem, transparent 14.5rem),
+    linear-gradient(180deg, rgba(255, 197, 78, 0.04), transparent 38%, rgba(75, 5, 7, 0.16));
+}
+
+button,
+a {
+  font: inherit;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+}
+
+main::before,
+main::after {
+  content: "";
+  position: fixed;
+  top: 5.8rem;
+  bottom: 0;
+  z-index: 1;
+  width: min(13vw, 5.5rem);
+  pointer-events: none;
+  opacity: 0.72;
+  background:
+    radial-gradient(circle at 50% 4%, #ffd05f 0 0.34rem, transparent 0.38rem),
+    radial-gradient(circle at 50% 10%, #f28c22 0 0.32rem, transparent 0.36rem),
+    radial-gradient(circle at 50% 16%, #f6bb36 0 0.34rem, transparent 0.38rem),
+    radial-gradient(circle at 50% 22%, #d9474e 0 0.28rem, transparent 0.32rem),
+    radial-gradient(circle at 50% 28%, #ffd05f 0 0.34rem, transparent 0.38rem),
+    radial-gradient(circle at 50% 34%, #f28c22 0 0.32rem, transparent 0.36rem),
+    linear-gradient(180deg, rgba(242, 196, 105, 0.58), transparent 80%);
+  background-size: 100% 12rem, 100% 12rem, 100% 12rem, 100% 12rem, 100% 12rem, 100% 12rem, 2px 100%;
+  background-repeat: repeat-y;
+  background-position: center top;
+}
+
+main::before {
+  left: 0.6rem;
+}
+
+main::after {
+  right: 0.6rem;
+}
+
+.ambient,
+.petal-layer {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.ambient {
+  z-index: 0;
+}
+
+.ambient::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 7rem;
+  background:
+    radial-gradient(circle at 6% 28%, var(--marigold) 0 0.38rem, transparent 0.42rem),
+    radial-gradient(circle at 10% 42%, #ffcc52 0 0.42rem, transparent 0.46rem),
+    radial-gradient(circle at 15% 32%, #f27b22 0 0.36rem, transparent 0.4rem),
+    radial-gradient(circle at 21% 44%, var(--marigold) 0 0.42rem, transparent 0.46rem),
+    radial-gradient(circle at 29% 30%, #ffcc52 0 0.38rem, transparent 0.42rem),
+    radial-gradient(circle at 37% 44%, #f27b22 0 0.36rem, transparent 0.4rem),
+    radial-gradient(circle at 46% 30%, var(--marigold) 0 0.42rem, transparent 0.46rem),
+    radial-gradient(circle at 55% 44%, #ffcc52 0 0.38rem, transparent 0.42rem),
+    radial-gradient(circle at 64% 31%, #f27b22 0 0.36rem, transparent 0.4rem),
+    radial-gradient(circle at 73% 43%, var(--marigold) 0 0.42rem, transparent 0.46rem),
+    radial-gradient(circle at 83% 31%, #ffcc52 0 0.38rem, transparent 0.42rem),
+    radial-gradient(circle at 93% 42%, #f27b22 0 0.36rem, transparent 0.4rem),
+    linear-gradient(90deg, transparent, rgba(255, 214, 112, 0.72), transparent) center 1.85rem / 100% 2px no-repeat;
+  filter: drop-shadow(0 6px 14px rgba(41, 8, 2, 0.32));
+  opacity: 0.95;
+}
+
+.ambient::after {
+  content: "";
+  position: absolute;
+  left: 4vw;
+  right: 4vw;
+  bottom: 0;
+  height: 100vh;
+  background:
+    linear-gradient(90deg, rgba(209, 139, 42, 0.65), rgba(255, 220, 141, 0.42), rgba(164, 89, 18, 0.58)) left top / 0.28rem 100% no-repeat,
+    linear-gradient(90deg, rgba(209, 139, 42, 0.65), rgba(255, 220, 141, 0.42), rgba(164, 89, 18, 0.58)) right top / 0.28rem 100% no-repeat,
+    radial-gradient(ellipse at 0 88%, rgba(255, 193, 79, 0.3), transparent 11rem),
+    radial-gradient(ellipse at 100% 88%, rgba(255, 193, 79, 0.3), transparent 11rem);
+  opacity: 0.78;
+}
+
+.petal-layer {
+  z-index: 4;
+}
+
+/* Decorative corners */
+.decorative-corner {
+  position: fixed;
+  width: 120px;
+  height: 120px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.corner-top-left {
+  top: 0;
+  left: 0;
+  background:
+    radial-gradient(circle at 30% 30%, var(--marigold) 0 8px, transparent 8px),
+    radial-gradient(circle at 60% 20%, var(--rose) 0 6px, transparent 6px),
+    radial-gradient(circle at 20% 60%, var(--gold) 0 7px, transparent 7px);
+}
+
+.corner-top-right {
+  top: 0;
+  right: 0;
+  background:
+    radial-gradient(circle at 70% 30%, var(--marigold) 0 8px, transparent 8px),
+    radial-gradient(circle at 40% 20%, var(--rose) 0 6px, transparent 6px),
+    radial-gradient(circle at 80% 60%, var(--gold) 0 7px, transparent 7px);
+  transform: scaleX(-1);
+}
+
+.corner-bottom-left {
+  bottom: 0;
+  left: 0;
+  background:
+    radial-gradient(circle at 30% 70%, var(--marigold) 0 8px, transparent 8px),
+    radial-gradient(circle at 60% 80%, var(--rose) 0 6px, transparent 6px),
+    radial-gradient(circle at 20% 40%, var(--gold) 0 7px, transparent 7px);
+  transform: scaleY(-1);
+}
+
+.corner-bottom-right {
+  bottom: 0;
+  right: 0;
+  background:
+    radial-gradient(circle at 70% 70%, var(--marigold) 0 8px, transparent 8px),
+    radial-gradient(circle at 40% 80%, var(--rose) 0 6px, transparent 6px),
+    radial-gradient(circle at 80% 40%, var(--gold) 0 7px, transparent 7px);
+  transform: scale(-1, -1);
+}
+
+/* Rangoli-inspired central decor */
+.rangoli-decoration {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+  background:
+    radial-gradient(circle, var(--marigold) 0 4px, transparent 4px 8px),
+    radial-gradient(circle, var(--pink) 0 3px, transparent 3px 7px),
+    radial-gradient(circle, var(--gold) 0 5px, transparent 5px 9px),
+    conic-gradient(from 0deg, var(--rose) 0deg 30deg, transparent 30deg 60deg, var(--gold) 60deg 90deg, transparent 90deg 120deg, var(--marigold) 120deg 150deg, transparent 150deg 180deg, var(--rose) 180deg 210deg, transparent 210deg 240deg, var(--gold) 240deg 270deg, transparent 270deg 300deg, var(--marigold) 300deg 330deg, transparent 330deg 360deg);
+  background-size: 20px 20px, 20px 20px, 20px 20px, 100% 100%;
+  background-position: center;
+  border-radius: 50%;
+  filter: blur(0.5px);
+}
+
+/* Card floral top decor */
+.card-floral-top {
+  width: 100%;
+  height: 60px;
+  margin-bottom: 10px;
+  background:
+    radial-gradient(circle at 10% 50%, var(--marigold) 0 8px, transparent 8px),
+    radial-gradient(circle at 25% 30%, var(--rose) 0 6px, transparent 6px),
+    radial-gradient(circle at 40% 50%, var(--gold) 0 7px, transparent 7px),
+    radial-gradient(circle at 55% 30%, var(--pink) 0 5px, transparent 5px),
+    radial-gradient(circle at 70% 50%, var(--marigold) 0 8px, transparent 8px),
+    radial-gradient(circle at 85% 30%, var(--rose) 0 6px, transparent 6px),
+    linear-gradient(90deg, transparent, var(--gold-light) 50%, transparent);
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.85;
+}
+
+/* Card floral bottom decor */
+.card-floral-bottom {
+  width: 100%;
+  height: 50px;
+  margin-top: 15px;
+  background:
+    radial-gradient(circle at 15% 50%, var(--gold) 0 7px, transparent 7px),
+    radial-gradient(circle at 30% 70%, var(--marigold) 0 6px, transparent 6px),
+    radial-gradient(circle at 50% 50%, var(--pink) 0 8px, transparent 8px),
+    radial-gradient(circle at 70% 70%, var(--rose) 0 6px, transparent 6px),
+    radial-gradient(circle at 85% 50%, var(--gold) 0 7px, transparent 7px),
+    linear-gradient(90deg, transparent, var(--gold-light) 50%, transparent);
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.85;
+}
+
+/* Blessing card floral bottom */
+.blessing-card .floral-bottom {
+  width: 100%;
+  height: 65px;
+  margin-top: 20px;
+  background:
+    radial-gradient(circle at 12% 45%, var(--marigold) 0 9px, transparent 9px),
+    radial-gradient(circle at 28% 65%, var(--rose) 0 7px, transparent 7px),
+    radial-gradient(circle at 45% 45%, var(--gold) 0 8px, transparent 8px),
+    radial-gradient(circle at 62% 65%, var(--pink) 0 7px, transparent 7px),
+    radial-gradient(circle at 80% 45%, var(--marigold) 0 9px, transparent 9px),
+    radial-gradient(circle at 50% 75%, var(--green) 0 6px, transparent 6px),
+    linear-gradient(90deg, transparent, var(--gold-light) 50%, transparent);
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.9;
+}
+
+
+.glow {
+  position: absolute;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 209, 95, 0.56), rgba(231, 127, 32, 0.18) 46%, transparent 70%);
+  filter: blur(10px);
+  animation: floatGlow 8s ease-in-out infinite;
+}
+
+.glow-one {
+  left: 4%;
+  top: 16%;
+}
+
+.glow-two {
+  right: 8%;
+  top: 28%;
+  animation-delay: -3s;
+}
+
+.glow-three {
+  left: 44%;
+  bottom: 8%;
+  animation-delay: -5s;
+}
+
+.lamp {
+  position: absolute;
+  top: 0;
+  width: 3px;
+  height: 7rem;
+  background: linear-gradient(var(--gold-light), rgba(244, 177, 45, 0.2), transparent);
+}
+
+.lamp::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: #ffd46f;
+  box-shadow: 0 0 20px #ffc247, 0 0 44px rgba(255, 159, 45, 0.75);
+  transform: translateX(-50%);
+}
+
+.lamp-left {
+  left: 7%;
+}
+
+.lamp-right {
+  right: 8%;
+}
+
+.petal {
+  position: absolute;
+  top: -3rem;
+  width: 1.1rem;
+  height: 0.7rem;
+  border-radius: 90% 10% 90% 10%;
+  background: linear-gradient(135deg, #ff9fb1, #e74962 62%, #ffd3dc);
+  opacity: 0.9;
+  animation: fallPetal var(--fall-duration, 9s) linear infinite;
+}
+
+.petal:nth-child(3n) {
+  width: 0.92rem;
+  height: 0.92rem;
+  border-radius: 50% 50% 45% 45%;
+  background: radial-gradient(circle at 35% 30%, #ffd36f, var(--marigold) 58%, #d96b18);
+}
+
+.petal:nth-child(5n) {
+  background: linear-gradient(135deg, #ffbd78, #e66b2a 62%, #ffe0a3);
+}
+
+.hero {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 1rem;
+  padding: 1rem 0.85rem 3.8rem;
+  perspective: 1400px;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 6rem 0 auto;
+  height: min(62vh, 33rem);
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 46%, rgba(255, 213, 126, 0.22), transparent 20rem),
+    linear-gradient(90deg, transparent 0 11%, rgba(255, 211, 116, 0.28) 11.2% 11.6%, transparent 11.8% 88.2%, rgba(255, 211, 116, 0.28) 88.4% 88.8%, transparent 89%),
+    radial-gradient(ellipse at 50% 100%, rgba(68, 10, 8, 0.34), transparent 55%);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 1.2rem;
+  width: min(92vw, 34rem);
+  height: 5rem;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 68%, #ffd66f 0 0.38rem, transparent 0.42rem),
+    radial-gradient(circle at 24% 58%, #e95455 0 0.32rem, transparent 0.36rem),
+    radial-gradient(circle at 31% 70%, #f28c22 0 0.34rem, transparent 0.38rem),
+    radial-gradient(circle at 70% 60%, #ffd66f 0 0.38rem, transparent 0.42rem),
+    radial-gradient(circle at 78% 72%, #e95455 0 0.32rem, transparent 0.36rem),
+    radial-gradient(circle at 84% 62%, #f28c22 0 0.34rem, transparent 0.38rem),
+    radial-gradient(ellipse at 50% 100%, rgba(255, 184, 55, 0.36), transparent 54%);
+  filter: blur(0.1px) drop-shadow(0 8px 18px rgba(43, 8, 4, 0.24));
+  transform: translateX(-50%);
+}
+
+.step-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.7rem;
+  padding: 0.5rem 1.5rem;
+  color: #fff6d7;
+  background: linear-gradient(180deg, #82111d, #52080e);
+  border: 1px solid var(--gold-light);
+  border-radius: 999px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+  font-weight: 700;
+}
+
+body.invite-preview .step-pill {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.envelope-shell {
+  position: relative;
+  width: min(92vw, 357px);
+  aspect-ratio: 357 / 430;
+  border: 0;
+  border-radius: 1.1rem 1.1rem 0.45rem 0.45rem;
+  color: var(--maroon);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.65), transparent),
+    radial-gradient(circle at 20% 20%, rgba(244, 177, 45, 0.2), transparent 6rem),
+    radial-gradient(circle at 80% 20%, rgba(217, 61, 89, 0.15), transparent 6rem),
+    radial-gradient(circle at 50% 80%, rgba(76, 175, 80, 0.12), transparent 6rem),
+    radial-gradient(circle at 15% 50%, rgba(233, 30, 99, 0.08), transparent 5rem),
+    radial-gradient(circle at 85% 50%, rgba(244, 177, 45, 0.08), transparent 5rem),
+    /* Traditional Indian border pattern */
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 8px,
+      rgba(199, 132, 36, 0.04) 8px,
+      rgba(199, 132, 36, 0.04) 10px
+    ),
+    var(--paper);
+  box-shadow: var(--shadow), inset 0 0 0 3px rgba(198, 131, 41, 0.65), 0 0 50px rgba(249, 201, 126, 0.3), 0 0 80px rgba(217, 61, 89, 0.12);
+  cursor: pointer;
+  transform-style: preserve-3d;
+  animation: invitationEntrance 1s cubic-bezier(0.18, 0.82, 0.22, 1) both, invitationBreath 3.8s ease-in-out 1s infinite;
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+  overflow: visible;
+  isolation: isolate;
+}
+
+
+.photo-card {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  border-radius: inherit;
+  background: linear-gradient(rgba(255, 246, 229, 0.04), rgba(255, 246, 229, 0.04));
+  box-shadow: inset 0 0 0 1px rgba(222, 165, 78, 0.72);
+  transition: opacity 0.45s ease 0.22s, transform 1.05s cubic-bezier(0.16, 0.85, 0.18, 1);
+  overflow: hidden;
+}
+
+.envelope-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: inherit;
+}
+
+.envelope-shell.opened .photo-card {
+  opacity: 0;
+  transform: scale(1.03) rotateX(-8deg);
+}
+
+.envelope-shell:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+.envelope-shell.opened {
+  animation: envelopeExit 2.05s cubic-bezier(0.2, 0.9, 0.22, 1) forwards;
+  pointer-events: none;
+}
+
+.envelope-shadow {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -1.4rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: rgba(21, 5, 3, 0.32);
+  filter: blur(16px);
+  transform: translateZ(-2px);
+  z-index: -2;
+}
+
+.corner {
+  position: absolute;
+  z-index: 7;
+  width: 6rem;
+  height: 6rem;
+  border-color: var(--gold);
+  opacity: 0.72;
+}
+
+.corner-tl {
+  left: 0.8rem;
+  top: 0.8rem;
+  border-top: 2px solid;
+  border-left: 2px solid;
+  border-radius: 0.5rem 0 0;
+}
+
+.corner-br {
+  right: 0.8rem;
+  bottom: 0.8rem;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  border-radius: 0 0 0.5rem;
+}
+
+.ganesha {
+  position: absolute;
+  z-index: 4;
+  inset: 3.2rem 0 auto;
+  color: var(--gold);
+  font-family: "Noto Serif Oriya", serif;
+  font-size: clamp(3.5rem, 16vw, 5rem);
+  line-height: 1;
+}
+
+.hero-title {
+  position: absolute;
+  z-index: 4;
+  top: 35%;
+  left: 0;
+  right: 0;
+  font-family: "Noto Serif Oriya", serif;
+  font-size: clamp(2.15rem, 10vw, 3.35rem);
+  font-weight: 700;
+}
+
+.hero-subtitle {
+  position: absolute;
+  z-index: 4;
+  top: 48%;
+  left: 0;
+  right: 0;
+  font-weight: 700;
+}
+
+.flap {
+  position: absolute;
+  inset: auto 0 0;
+  height: 46%;
+  background: linear-gradient(160deg, rgba(255,255,255,0.12), rgba(199, 132, 36, 0.16));
+  backface-visibility: hidden;
+  transition: transform 1.05s cubic-bezier(0.16, 0.85, 0.18, 1), opacity 0.8s ease, filter 0.8s ease;
+}
+
+.flap-top {
+  z-index: 8;
+  top: 0;
+  bottom: auto;
+  height: 58%;
+  clip-path: polygon(0 0, 100% 0, 50% 72%);
+  transform-origin: top;
+  background: rgba(255, 246, 226, 0.62);
+  border-bottom: 2px solid rgba(190, 113, 25, 0.45);
+}
+
+.flap-left {
+  z-index: 6;
+  clip-path: polygon(0 0, 52% 100%, 0 100%);
+  border-top: 2px solid rgba(190, 113, 25, 0.42);
+  transform-origin: left center;
+}
+
+.flap-right {
+  z-index: 6;
+  clip-path: polygon(100% 0, 100% 100%, 48% 100%);
+  border-top: 2px solid rgba(190, 113, 25, 0.42);
+  transform-origin: right center;
+}
+
+.flap-bottom {
+  z-index: 5;
+  clip-path: polygon(0 100%, 50% 25%, 100% 100%);
+  background: rgba(255, 238, 207, 0.82);
+  transform-origin: bottom center;
+}
+
+.fold-line {
+  position: absolute;
+  z-index: 9;
+  bottom: 27%;
+  width: 54%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(173, 102, 22, 0.62), transparent);
+  transform-origin: center;
+}
+
+.fold-left {
+  left: 0;
+  transform: rotate(36deg);
+}
+
+.fold-right {
+  right: 0;
+  transform: rotate(-36deg);
+}
+
+.envelope-shell.opened .flap-top {
+  transform: rotateX(-158deg) translateY(-0.35rem);
+  filter: brightness(1.08);
+}
+
+.envelope-shell.opened .flap-left {
+  transform: rotateY(-112deg) translateX(-0.35rem);
+  opacity: 0.92;
+}
+
+.envelope-shell.opened .flap-right {
+  transform: rotateY(112deg) translateX(0.35rem);
+  opacity: 0.92;
+}
+
+.envelope-shell.opened .flap-bottom {
+  transform: rotateX(38deg) translateY(0.7rem);
+  opacity: 0.5;
+}
+
+.envelope-shell.opened .fold-line,
+.envelope-shell.opened .corner,
+.envelope-shell.opened .ganesha,
+.envelope-shell.opened .hero-title,
+.envelope-shell.opened .hero-subtitle,
+.envelope-shell.opened .click-text,
+.envelope-shell.opened .tap-hand {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.seal {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  bottom: 28%;
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  color: #ffe7a5;
+  background: radial-gradient(circle, #8c111e, #4c060c);
+  border: 4px solid #b46f19;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 10px 18px rgba(74, 19, 8, 0.35);
+}
+
+.envelope-shell.opened .seal {
+  animation: sealPop 0.8s ease forwards;
+}
+
+.seal span {
+  font-size: 2rem;
+}
+
+.click-text {
+  position: absolute;
+  z-index: 11;
+  left: 0;
+  right: 0;
+  bottom: 4.4rem;
+  color: #7d4a2c;
+  font-family: "Great Vibes", cursive;
+  font-size: 1.55rem;
+}
+
+.tap-hand {
+  position: absolute;
+  z-index: 11;
+  left: 50%;
+  bottom: 1.6rem;
+  color: #2d1511;
+  font-size: 2rem;
+  transform: translateX(-50%);
+  animation: tap 1.4s ease-in-out infinite;
+}
+
+.open-invite {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: min(92vw, 540px);
+  aspect-ratio: 1 / 1;
+  min-height: auto;
+  padding: 0;
+  text-align: center;
+  border-radius: 0.6rem;
+  background: transparent;
+  box-shadow: 0 26px 60px rgba(23, 6, 4, 0.34);
+  opacity: 0;
+  transform: translate(-50%, calc(-50% + 3rem)) rotateX(11deg) scale(0.78);
+  pointer-events: none;
+  transition: opacity 0.95s ease 0.36s, transform 1.18s cubic-bezier(0.16, 0.85, 0.18, 1) 0.36s;
+  overflow: visible;
+  z-index: 1;
+}
+
+.open-invite::before,
+.open-invite::after {
+  content: none;
+}
+
+.opened-photo {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  filter: drop-shadow(0 22px 35px rgba(24, 6, 3, 0.24));
+  opacity: 0;
+  transform: translateY(1.2rem) scale(0.94);
+  transition: opacity 1s ease 0.28s, transform 1.15s cubic-bezier(0.16, 0.85, 0.18, 1) 0.28s;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.opened-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: inherit;
+}
+
+.open-invite.visible {
+  position: absolute;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+  z-index: 3;
+}
+
+.open-invite.visible .opened-photo {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.open-invite > :not(.opened-photo):not(.scroll-down) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.open-invite .scroll-down {
+  position: absolute;
+  left: 50%;
+  bottom: 4.2%;
+  z-index: 2;
+  min-height: 2.2rem;
+  padding: 0.38rem 1.1rem;
+  font-size: 0.85rem;
+  transform: translateX(-50%);
+}
+
+.open-invite .scroll-down:hover {
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.floral-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5rem;
+  background:
+    radial-gradient(circle at 20% 25%, #e65b62 0 0.55rem, transparent 0.58rem),
+    radial-gradient(circle at 33% 15%, #f3a54c 0 0.48rem, transparent 0.5rem),
+    radial-gradient(circle at 52% 22%, #df425c 0 0.6rem, transparent 0.62rem),
+    radial-gradient(circle at 70% 12%, #f5b17c 0 0.55rem, transparent 0.57rem),
+    radial-gradient(circle at 84% 25%, #d93658 0 0.46rem, transparent 0.48rem),
+    linear-gradient(90deg, transparent, rgba(46, 115, 48, 0.32), transparent);
+}
+
+.sanskrit {
+  margin-top: 2.4rem;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: "Noto Serif Oriya", serif;
+  color: var(--maroon);
+  letter-spacing: 0;
+}
+
+.open-invite h1 {
+  font-size: clamp(3rem, 15vw, 4.8rem);
+}
+
+.couple-line {
+  margin-top: 0.3rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.kalash {
+  position: relative;
+  width: 12rem;
+  height: 11rem;
+  margin-top: 1.2rem;
+}
+
+.pot {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  display: grid;
+  place-items: center;
+  width: 7.3rem;
+  height: 6.1rem;
+  color: #8e141b;
+  font-size: 2rem;
+  border-radius: 50% 50% 44% 44%;
+  background: radial-gradient(circle at 35% 22%, #ffd773, #b36a12 62%, #6d2808);
+  border: 2px solid #8a4b10;
+  transform: translateX(-50%);
+  box-shadow: inset 0 -10px 20px rgba(72, 28, 6, 0.3);
+}
+
+.leaf {
+  position: absolute;
+  bottom: 6.8rem;
+  left: 50%;
+  width: 3.5rem;
+  height: 5.2rem;
+  border-radius: 100% 0;
+  background: linear-gradient(135deg, #75a92d, #1e6b31);
+  transform-origin: bottom;
+}
+
+.leaf-a {
+  transform: translateX(-50%) rotate(-38deg);
+}
+
+.leaf-b {
+  transform: translateX(-50%) rotate(0deg);
+}
+
+.leaf-c {
+  transform: translateX(-50%) rotate(38deg);
+}
+
+.diya {
+  position: absolute;
+  bottom: 0.6rem;
+  width: 3rem;
+  height: 1.4rem;
+  border-radius: 0 0 3rem 3rem;
+  background: #9d4d0f;
+}
+
+.diya::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -1.1rem;
+  width: 0.8rem;
+  height: 1.3rem;
+  border-radius: 60% 5% 60% 40%;
+  background: #ffd05f;
+  box-shadow: 0 0 16px #ffb23f;
+  transform: translateX(-50%) rotate(25deg);
+}
+
+.diya-left {
+  left: 0;
+}
+
+.diya-right {
+  right: 0;
+}
+
+.scroll-down,
+.primary-btn,
+.call-btn,
+.whatsapp-btn,
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.85rem;
+  padding: 0.7rem 1.35rem;
+  color: #fff8dc;
+  text-decoration: none;
+  border: 2px solid var(--gold-light);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #9a1321 0%, #750914 50%, #56070e 100%);
+  box-shadow: 0 10px 22px rgba(81, 14, 11, 0.35), 0 0 18px rgba(249, 201, 126, 0.25);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+
+.scroll-down:hover,
+.primary-btn:hover,
+.call-btn:hover,
+.whatsapp-btn:hover,
+.share-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 30px rgba(81, 14, 11, 0.45), 0 0 25px rgba(249, 201, 126, 0.4);
+  border-color: #ffcc66;
+}
+
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.35rem;
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: 2.6rem 0.85rem 7rem;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  position: relative;
+}
+
+.cards-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0 -3vw;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 12% 4%, rgba(255, 207, 100, 0.18), transparent 16rem),
+    radial-gradient(ellipse at 88% 6%, rgba(255, 207, 100, 0.18), transparent 16rem),
+    radial-gradient(ellipse at 50% 100%, rgba(245, 174, 50, 0.22), transparent 26rem),
+    linear-gradient(180deg, rgba(58, 5, 8, 0.12), rgba(102, 12, 14, 0.48) 25%, rgba(48, 4, 8, 0.38));
+  border-top: 1px solid rgba(247, 199, 124, 0.25);
+  box-shadow: inset 0 35px 80px rgba(31, 4, 5, 0.2);
+}
+
+.cards-grid::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0.4rem;
+  z-index: -1;
+  width: min(94vw, 62rem);
+  height: 5.2rem;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 7% 42%, var(--marigold) 0 0.36rem, transparent 0.4rem),
+    radial-gradient(circle at 13% 62%, #f28c22 0 0.32rem, transparent 0.36rem),
+    radial-gradient(circle at 21% 42%, #ffd66f 0 0.36rem, transparent 0.4rem),
+    radial-gradient(circle at 31% 62%, var(--rose) 0 0.3rem, transparent 0.34rem),
+    radial-gradient(circle at 42% 42%, var(--marigold) 0 0.36rem, transparent 0.4rem),
+    radial-gradient(circle at 56% 62%, #f28c22 0 0.32rem, transparent 0.36rem),
+    radial-gradient(circle at 68% 42%, #ffd66f 0 0.36rem, transparent 0.4rem),
+    radial-gradient(circle at 81% 62%, var(--rose) 0 0.3rem, transparent 0.34rem),
+    radial-gradient(circle at 93% 42%, var(--marigold) 0 0.36rem, transparent 0.4rem),
+    linear-gradient(90deg, transparent, rgba(255, 214, 112, 0.7), transparent) center 2.5rem / 100% 2px no-repeat;
+  filter: drop-shadow(0 8px 12px rgba(42, 5, 5, 0.26));
+  transform: translateX(-50%);
+}
+
+body.invite-locked .cards-grid {
+  opacity: 0;
+  transform: translateY(3rem);
+  pointer-events: none;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.card {
+  position: relative;
+  min-height: 29rem;
+  padding: 1.8rem 1.25rem 3.25rem;
+  border: 3px solid rgba(188, 117, 31, 0.75);
+  border-radius: 0.8rem;
+  background:
+    radial-gradient(circle at 84% 8%, rgba(255, 255, 255, 0.9), transparent 8rem),
+    radial-gradient(circle at 16% 88%, rgba(249, 201, 126, 0.35), transparent 8rem),
+    radial-gradient(circle at 50% 50%, rgba(233, 30, 99, 0.12) 0 5.5rem, transparent 5.5rem),
+    radial-gradient(circle at 10% 10%, rgba(244, 177, 45, 0.15), transparent 6rem),
+    radial-gradient(circle at 90% 10%, rgba(244, 177, 45, 0.15), transparent 6rem),
+    linear-gradient(180deg, rgba(255, 250, 236, 0.98), rgba(255, 239, 207, 0.98)),
+    /* Traditional Indian texture */
+    repeating-linear-gradient(
+      45deg,
+      rgba(201, 132, 36, 0.06) 0px,
+      rgba(201, 132, 36, 0.06) 1px,
+      transparent 1px,
+      transparent 8px
+    ),
+    var(--paper);
+  box-shadow: 0 25px 55px rgba(35, 5, 5, 0.4), inset 0 0 0 2px rgba(255, 255, 255, 0.85), 0 0 40px rgba(249, 201, 126, 0.25), 0 0 60px rgba(217, 61, 89, 0.12);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.3s ease;
+}
+
+
+.card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover {
+  box-shadow: 0 35px 70px rgba(35, 5, 5, 0.5), inset 0 0 0 3px rgba(255, 255, 255, 0.9), 0 0 60px rgba(249, 201, 126, 0.35), 0 0 85px rgba(217, 61, 89, 0.2);
+  transform: translateY(-0.8rem);
+  border-color: rgba(188, 117, 31, 1);
+}
+
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 5.25rem;
+  height: 5.25rem;
+  border-color: rgba(210, 144, 52, 0.72);
+  opacity: 0.9;
+}
+
+.card::before {
+  top: 0.7rem;
+  left: 0.7rem;
+  border-top: 2px solid;
+  border-left: 2px solid;
+  border-radius: 0.45rem 0 0;
+}
+
+.card::after {
+  right: 0.7rem;
+  bottom: 0.7rem;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  border-radius: 0 0 0.45rem;
+}
+
+.menu-dot {
+  display: none;
+}
+
+.card[data-card-label]::before {
+  background:
+    radial-gradient(circle at 0.7rem 0.7rem, transparent 0 1.1rem, rgba(210, 144, 52, 0.32) 1.12rem 1.2rem, transparent 1.22rem),
+    radial-gradient(circle at 2.15rem 0.95rem, rgba(210, 144, 52, 0.26) 0 0.18rem, transparent 0.2rem),
+    radial-gradient(circle at 0.95rem 2.15rem, rgba(210, 144, 52, 0.26) 0 0.18rem, transparent 0.2rem);
+}
+
+.card[data-card-label]::after {
+  background:
+    radial-gradient(circle at calc(100% - 0.7rem) calc(100% - 0.7rem), transparent 0 1.1rem, rgba(210, 144, 52, 0.32) 1.12rem 1.2rem, transparent 1.22rem),
+    radial-gradient(circle at calc(100% - 2.15rem) calc(100% - 0.95rem), rgba(210, 144, 52, 0.26) 0 0.18rem, transparent 0.2rem),
+    radial-gradient(circle at calc(100% - 0.95rem) calc(100% - 2.15rem), rgba(210, 144, 52, 0.26) 0 0.18rem, transparent 0.2rem);
+}
+
+.card[data-card-label] {
+  overflow: visible;
+  isolation: isolate;
+}
+
+.card[data-card-label]::selection {
+  background: rgba(117, 9, 20, 0.16);
+}
+
+.card[data-card-label] h2::after {
+  content: "";
+  display: block;
+  width: 7.2rem;
+  height: 0.85rem;
+  margin: 0.25rem auto 0.55rem;
+  background:
+    radial-gradient(circle, var(--maroon) 0 0.12rem, transparent 0.14rem) center / 0.75rem 0.75rem,
+    linear-gradient(90deg, transparent, var(--gold), transparent) center / 100% 1px no-repeat;
+}
+
+.card[data-card-label] > h2 {
+  padding-inline: 0.8rem;
+}
+
+.card[data-card-label] .line {
+  min-width: 3.75rem;
+}
+
+.card[data-card-label] .ornament,
+.card[data-card-label] .divider {
+  position: relative;
+}
+
+.card[data-card-label] .ornament::after,
+.card[data-card-label] .divider::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--maroon);
+  box-shadow: -0.55rem 0 0 -0.12rem var(--maroon), 0.55rem 0 0 -0.12rem var(--maroon);
+  transform: translate(-50%, -50%);
+}
+
+.card-label {
+  position: absolute;
+  left: 50%;
+  bottom: -0.85rem;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: min(72%, 13rem);
+  min-height: 2.35rem;
+  padding: 0.38rem 1rem;
+  color: #fff8dc;
+  background: linear-gradient(180deg, #86111b, #56070d);
+  border: 1px solid rgba(246, 199, 124, 0.75);
+  border-radius: 0.5rem;
+  box-shadow: 0 9px 18px rgba(65, 9, 8, 0.28);
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.venue-card::before,
+.contact-card::before,
+.blessing-card::before {
+  box-shadow: 0 0 28px rgba(255, 177, 64, 0.16);
+}
+
+.blessing-card::after {
+  background:
+    radial-gradient(circle at 16% 94%, #ffd26e 0 0.45rem, transparent 0.48rem),
+    radial-gradient(circle at 84% 94%, #ffd26e 0 0.45rem, transparent 0.48rem),
+    radial-gradient(ellipse at 16% 100%, rgba(255, 151, 45, 0.5), transparent 2.8rem),
+    radial-gradient(ellipse at 84% 100%, rgba(255, 151, 45, 0.5), transparent 2.8rem);
+}
+
+.card h2 {
+  text-align: center;
+  font-size: clamp(1.45rem, 7.2vw, 2.05rem);
+  line-height: 1.25;
+}
+
+.ornament,
+.divider {
+  width: 8rem;
+  height: 1rem;
+  margin: 0.35rem auto 1.2rem;
+  background:
+    radial-gradient(circle, var(--maroon) 0 0.15rem, transparent 0.17rem) center / 1rem 1rem,
+    linear-gradient(90deg, transparent, var(--gold), transparent) center / 100% 1px no-repeat;
+}
+
+.person {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.portrait {
+  position: relative;
+  width: 6.3rem;
+  height: 6.3rem;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  background: #fff6e2;
+  box-shadow: 0 8px 18px rgba(93, 26, 15, 0.16), 0 0 15px rgba(249, 201, 126, 0.2);
+  overflow: hidden;
+}
+
+.portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
+.portrait::before,
+.portrait::after {
+  content: "";
+  position: absolute;
+  bottom: -0.8rem;
+  width: 2.8rem;
+  height: 3rem;
+  border-radius: 50% 50% 0 0;
+  background: radial-gradient(circle at 50% 10%, #f2a150 0 0.35rem, transparent 0.38rem), #cf4e3e;
+  opacity: 0.9;
+}
+
+.portrait::before {
+  left: -0.6rem;
+  transform: rotate(-35deg);
+}
+
+.portrait::after {
+  right: -0.6rem;
+  transform: rotate(35deg);
+}
+
+.bride {
+  /* You can add a subtle background if you want, 
+     or just keep the default - the image will cover it! */
+}
+
+.role {
+  margin: 0;
+  color: var(--maroon);
+  font-weight: 700;
+}
+
+.person h3 {
+  margin-top: 0.2rem;
+  font-size: 1.25rem;
+}
+
+.person p {
+  margin: 0.25rem 0;
+  line-height: 1.65;
+}
+
+.line {
+  display: inline-block;
+  width: 4rem;
+  border-bottom: 1px solid rgba(117, 9, 20, 0.55);
+}
+
+.message-card p,
+.contact-card p,
+.blessing-card p,
+.venue-card p {
+  line-height: 1.85;
+  font-weight: 600;
+}
+
+.bow {
+  width: 7rem;
+  height: 4.5rem;
+  margin: 1.6rem auto 0;
+  background:
+    radial-gradient(ellipse at 28% 48%, #bd1f2e 0 1.8rem, transparent 1.85rem),
+    radial-gradient(ellipse at 72% 48%, #bd1f2e 0 1.8rem, transparent 1.85rem),
+    radial-gradient(circle, #f2bc55 0 0.7rem, transparent 0.75rem);
+  filter: drop-shadow(0 8px 9px rgba(90, 20, 8, 0.24));
+}
+
+.count-ring {
+  display: grid;
+  place-items: center;
+  width: 14rem;
+  height: 14rem;
+  margin: 1.4rem auto;
+  border: 0.85rem solid rgba(211, 150, 52, 0.35);
+  border-right-color: var(--gold);
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(255, 248, 232, 0.85));
+  box-shadow: 0 10px 30px rgba(93, 26, 15, 0.25), 0 0 25px rgba(249, 201, 126, 0.3), inset 0 0 20px rgba(255, 211, 116, 0.4);
+  animation: pulse-ring 3s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.count-ring span {
+  font-family: "Noto Serif Oriya", serif;
+  font-size: 4.8rem;
+  line-height: 1;
+  color: var(--maroon);
+  text-shadow: 0 2px 10px rgba(93, 26, 15, 0.2);
+}
+
+.count-ring small {
+  margin-top: -1.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--maroon);
+}
+
+.time-boxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.time-boxes div {
+  display: grid;
+  place-items: center;
+  min-height: 5.25rem;
+  padding: 0.6rem;
+  border: 2px solid rgba(200, 132, 36, 0.55);
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #fff8e9, #f5ddb5);
+  box-shadow: 0 7px 18px rgba(89, 24, 10, 0.18), 0 0 12px rgba(249, 201, 126, 0.2);
+  transition: all 0.3s ease;
+}
+
+.time-boxes div:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(89, 24, 10, 0.25), 0 0 18px rgba(249, 201, 126, 0.35);
+  border-color: var(--gold);
+}
+
+.time-boxes strong {
+  font-family: "Noto Serif Oriya", serif;
+  font-size: 2.1rem;
+  color: var(--maroon);
+  text-shadow: 0 1px 5px rgba(93, 26, 15, 0.15);
+}
+
+.date-line {
+  margin-top: 1.4rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.events {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.event {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem;
+  border: 1px solid rgba(201, 132, 36, 0.35);
+  border-radius: 0.7rem;
+  background: rgba(255, 250, 237, 0.68);
+}
+
+.event-icon {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: #fff1d5;
+  box-shadow: inset 0 0 0 1px rgba(199, 132, 36, 0.44);
+  font-size: 1.7rem;
+}
+
+.event strong {
+  display: block;
+  color: var(--maroon);
+}
+
+.event span {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.95rem;
+}
+
+.venue-art {
+  display: grid;
+  place-items: center;
+  height: 8rem;
+  margin: 1rem 0;
+  border-radius: 1rem;
+  background:
+    radial-gradient(ellipse at 50% 76%, rgba(74, 90, 32, 0.28), transparent 35%),
+    linear-gradient(180deg, transparent 0 55%, #83420d 56% 65%, transparent 66%),
+    linear-gradient(120deg, transparent 35%, rgba(247, 187, 67, 0.55) 36% 64%, transparent 65%),
+    #fff3d6;
+}
+
+.pin {
+  display: grid;
+  place-items: center;
+  width: 3.7rem;
+  height: 3.7rem;
+  color: #fff8df;
+  background: #c52d27;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  font-size: 2rem;
+  box-shadow: 0 8px 18px rgba(122, 22, 11, 0.24);
+}
+
+.pin::first-letter {
+  transform: rotate(45deg);
+}
+
+.map-frame {
+  width: 100%;
+  aspect-ratio: 1.35;
+  margin: 1rem 0;
+  border: 1px solid rgba(194, 127, 40, 0.55);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #f3dfbc;
+}
+
+.map-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.phone-list {
+  display: grid;
+  gap: 0.45rem;
+  margin: 1.2rem 0;
+  color: #251212;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.call-btn,
+.whatsapp-btn,
+.share-btn {
+  width: 100%;
+  margin-top: 0.7rem;
+  border: 0;
+}
+
+.call-btn,
+.whatsapp-btn {
+  background: linear-gradient(180deg, #119432, #086f25);
+}
+
+.share-btn {
+  background: linear-gradient(180deg, #8d101d, #56070e);
+}
+
+.blessing-card {
+  min-height: 30rem;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding-top: 5.5rem;
+  background:
+    radial-gradient(circle at 12% 88%, rgba(64, 132, 46, 0.4), transparent 7rem),
+    radial-gradient(circle at 88% 88%, rgba(64, 132, 46, 0.4), transparent 7rem),
+    radial-gradient(circle at 50% 50%, rgba(233, 30, 99, 0.18) 0 6rem, transparent 6rem),
+    radial-gradient(circle at 10% 10%, rgba(244, 177, 45, 0.25), transparent 5rem),
+    radial-gradient(circle at 90% 10%, rgba(244, 177, 45, 0.25), transparent 5rem),
+    radial-gradient(circle at 20% 30%, rgba(249, 201, 126, 0.2), transparent 4rem),
+    radial-gradient(circle at 80% 30%, rgba(249, 201, 126, 0.2), transparent 4rem),
+    repeating-linear-gradient(45deg, rgba(201, 132, 36, 0.07) 0 1px, transparent 1px 8px),
+    var(--paper);
+}
+
+
+/* Details Card Styles */
+.detail-section {
+  width: 100%;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.detail-title {
+  color: var(--maroon);
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+  font-family: "Noto Serif Oriya", serif;
+}
+
+.hashtag-box {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--maroon);
+  background: linear-gradient(135deg, #fff4db, #ffecc8);
+  border: 2px solid var(--gold);
+  border-radius: 50px;
+  box-shadow: 0 5px 15px rgba(93, 26, 15, 0.15), 0 0 20px rgba(249, 201, 126, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hashtag-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(93, 26, 15, 0.25), 0 0 30px rgba(249, 201, 126, 0.4);
+  border-color: #ffcc66;
+}
+
+.namaste {
+  display: grid;
+  place-items: center;
+  width: 6rem;
+  height: 6rem;
+  border: 3px solid var(--gold);
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fff9eb 0%, #fff4db 50%, #ffecc8 100%);
+  font-size: 3rem;
+  box-shadow: 0 0 20px rgba(249, 201, 126, 0.35), 0 0 40px rgba(249, 201, 126, 0.15), inset 0 0 15px rgba(255, 211, 116, 0.35);
+}
+
+
+.blessing-card h2 {
+  font-size: 2.4rem;
+}
+
+.blessing-card h3 {
+  font-size: 2rem;
+}
+
+.music-player {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 8;
+  display: grid;
+  grid-template-columns: 2.6rem minmax(7rem, 1fr) 4rem auto;
+  align-items: center;
+  gap: 0.7rem;
+  width: min(92vw, 650px);
+  min-height: 3.7rem;
+  padding: 0.5rem 0.8rem;
+  color: #fff5cf;
+  background: linear-gradient(90deg, #4f060b 0%, #7a0f19 25%, #9a1321 50%, #7a0f19 75%, #4f060b 100%);
+  border: 2px solid var(--gold-light);
+  border-radius: 999px;
+  box-shadow: 0 20px 38px rgba(26, 7, 6, 0.45), 0 0 30px rgba(249, 201, 126, 0.3);
+  transform: translateX(-50%);
+  transition: opacity 0.45s ease, transform 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
+}
+
+
+body.invite-locked .music-player,
+body.invite-preview .music-player {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 1rem);
+}
+
+body.details-mode .music-player {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  width: min(92vw, 650px);
+  margin: -5.8rem auto 1rem;
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+.music-player button {
+  width: 2.7rem;
+  height: 2.7rem;
+  color: #fff3c6;
+  border: 2px solid var(--gold-light);
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06));
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 0 12px rgba(249, 201, 126, 0.3);
+}
+
+.music-player button:hover {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+  box-shadow: 0 0 22px rgba(249, 201, 126, 0.55), 0 0 35px rgba(217, 61, 89, 0.25);
+  transform: scale(1.08);
+  border-color: #ffcc66;
+}
+
+
+.music-player span {
+  overflow: hidden;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.music-line {
+  height: 2px;
+  background: rgba(245, 201, 130, 0.4);
+  overflow: hidden;
+}
+
+.music-line i {
+  display: block;
+  width: 45%;
+  height: 100%;
+  background: #ffe198;
+  animation: musicPulse 2s ease-in-out infinite;
+}
+
+.music-player small {
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+@keyframes floatGlow {
+  50% {
+    transform: translate3d(1rem, -1.5rem, 0) scale(1.08);
+  }
+}
+
+@keyframes fallPetal {
+  from {
+    transform: translate3d(0, -3rem, 0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(var(--drift, 2rem), 110vh, 0) rotate(720deg);
+  }
+}
+
+@keyframes tap {
+  50% {
+    transform: translate(-50%, 0.35rem) scale(0.94);
+  }
+}
+
+@keyframes musicPulse {
+  50% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes invitationEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(2rem) rotateX(15deg) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0) scale(1);
+  }
+}
+
+@keyframes invitationBreath {
+  50% {
+    transform: translateY(-0.45rem) scale(1.01);
+  }
+}
+
+@keyframes envelopeExit {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  58% {
+    opacity: 1;
+    transform: translateY(-0.8rem) rotateX(8deg) scale(1.02);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-3rem) rotateX(18deg) scale(0.82);
+  }
+}
+
+@keyframes sealPop {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1) rotate(0deg);
+  }
+  45% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.18) rotate(14deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.25) rotate(80deg);
+  }
+}
+
+@media (min-width: 720px) {
+  .hero {
+    min-height: 96vh;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.1rem;
+    padding-inline: 1.2rem;
+  }
+
+  .blessing-card {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 940px) {
+  .cards-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .card {
+    min-height: 31.5rem;
+    padding: 1.8rem 0.85rem 3rem;
+  }
+
+  .card h2 {
+    font-size: 1.55rem;
+    line-height: 1.22;
+  }
+
+  .person {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+    text-align: center;
+  }
+
+  .portrait {
+    width: 5.35rem;
+    height: 5.35rem;
+    margin: 0 auto;
+  }
+
+  .person h3 {
+    font-size: 1rem;
+  }
+
+  .person p,
+  .message-card p,
+  .event span {
+    font-size: 0.88rem;
+    line-height: 1.62;
+  }
+
+  .message-card p {
+    margin: 0.55rem 0;
+  }
+
+  .count-ring {
+    width: 11.7rem;
+    height: 11.7rem;
+    margin: 1.15rem auto;
+  }
+
+  .count-ring span {
+    font-size: 3.8rem;
+  }
+
+  .time-boxes {
+    gap: 0.4rem;
+  }
+
+  .time-boxes div {
+    min-height: 4.35rem;
+    padding: 0.45rem 0.25rem;
+  }
+
+  .time-boxes strong {
+    font-size: 1.45rem;
+  }
+
+  .event {
+    grid-template-columns: 3.15rem 1fr;
+    gap: 0.55rem;
+    padding: 0.58rem;
+  }
+
+  .event-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 1.35rem;
+  }
+
+  .music-player {
+    width: min(56vw, 620px);
+    min-height: 3.05rem;
+  }
+
+  .venue-card,
+  .contact-card {
+    grid-column: span 2;
+  }
+
+  .blessing-card {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 520px) {
+  .person {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .portrait {
+    margin: 0 auto;
+  }
+
+  .music-player {
+    grid-template-columns: 2.5rem 1fr auto;
+  }
+
+  .music-line {
+    display: none;
+  }
+
+  .music-player small {
+    display: none;
+  }
+
+  .hero {
+    padding-top: 0.9rem;
+  }
+
+  .envelope-shell {
+    width: min(92vw, 357px);
+  }
+
+  .open-invite::before,
+  .open-invite::after {
+    content: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}

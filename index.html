@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ଶୁଭ ବିବାହ | Odia Wedding Invitation</title>
+  <meta name="description" content="Interactive Odia wedding invitation with envelope opening animation, countdown, venue map, music, and traditional floral decoration.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;500;700&family=Noto+Serif+Oriya:wght@500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="invite-locked">
+  <div class="ambient" aria-hidden="true">
+    <span class="lamp lamp-left"></span>
+    <span class="lamp lamp-right"></span>
+    <span class="glow glow-one"></span>
+    <span class="glow glow-two"></span>
+    <span class="glow glow-three"></span>
+  </div>
+
+  <div class="petal-layer" id="petalLayer" aria-hidden="true"></div>
+  
+  <!-- Decorative elements -->
+  <div class="decorative-corner corner-top-left" aria-hidden="true"></div>
+  <div class="decorative-corner corner-top-right" aria-hidden="true"></div>
+  <div class="decorative-corner corner-bottom-left" aria-hidden="true"></div>
+  <div class="decorative-corner corner-bottom-right" aria-hidden="true"></div>
+  <div class="rangoli-decoration" aria-hidden="true"></div>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="step-pill">୧. ଖୋଲନ୍ତୁ ନିମନ୍ତ୍ରଣୀ ଖୋଲ</div>
+
+      <button class="envelope-shell" id="openEnvelope" type="button" aria-label="Open wedding invitation envelope">
+        <span class="photo-card" aria-hidden="true">
+          <!-- 📸 Replace this image with your couple photo for the envelope! -->
+          <img src="assets/opening-card-reference.png" alt="Couple Photo" class="envelope-photo">
+        </span>
+        <span class="envelope-shadow"></span>
+        <span class="corner corner-tl"></span>
+        <span class="corner corner-br"></span>
+        <span class="ganesha">ॐ</span>
+        <span class="hero-title">ଶୁଭ ବିବାହ</span>
+        <span class="hero-subtitle" data-field="coupleShort">ସାରଦ ନିମନ୍ତ୍ରଣୀ</span>
+        <span class="fold-line fold-left"></span>
+        <span class="fold-line fold-right"></span>
+        <span class="flap flap-top"></span>
+        <span class="flap flap-left"></span>
+        <span class="flap flap-right"></span>
+        <span class="flap flap-bottom"></span>
+        <span class="seal"><span>✦</span></span>
+        <span class="click-text">Click to Open</span>
+        <span class="tap-hand">☝</span>
+      </button>
+
+      <article class="open-invite" id="openInvite" aria-live="polite">
+        <div class="opened-photo" aria-hidden="true">
+          <!-- 📸 Replace this image with your couple photo for the opened invitation! -->
+          <img src="assets/opened-card-reference.png" alt="Couple Photo" class="opened-photo-img">
+        </div>
+        <div class="floral-top"></div>
+        <p class="sanskrit">।। ଶ୍ରୀ ଗଣେଶାୟ ନମଃ ।।</p>
+        <h1>ଶୁଭ ବିବାହ</h1>
+        <p class="couple-line" data-field="coupleFull">ଓଁ ପ୍ରକାଶ ଓ କନ୍ୟା</p>
+        <div class="kalash" aria-hidden="true">
+          <span class="leaf leaf-a"></span>
+          <span class="leaf leaf-b"></span>
+          <span class="leaf leaf-c"></span>
+          <span class="pot">卐</span>
+          <span class="diya diya-left"></span>
+          <span class="diya diya-right"></span>
+        </div>
+        <button class="scroll-down" type="button" data-scroll="#details">Scroll Down</button>
+      </article>
+    </section>
+
+    <section class="cards-grid" id="details">
+      <article class="card couple-card reveal" data-card-label="୩. ବର ଓ କନ୍ୟା">
+        <div class="card-floral-top" aria-hidden="true"></div>
+        <h2>।। ବର ଓ କନ୍ୟା ।।</h2>
+        <div class="ornament"></div>
+        <div class="person">
+          <div class="portrait groom" aria-hidden="true">
+            <!-- 📸 Replace this image with the groom's photo! -->
+            <img src="assets/reference-wedding.png" alt="Groom Photo" class="portrait-img">
+          </div>
+          <div>
+            <p class="role">ବର</p>
+            <h3 data-field="groomName">ଶ୍ରୀ ଓଁ ପ୍ରକାଶ ବେହେରା</h3>
+            <p>ସୁପୁତ୍ର ଶ୍ରୀ <span class="line"></span> ବେହେରା</p>
+            <p>ଗ୍ରାମ <span class="line"></span> ଜିଲ୍ଲା <span class="line"></span></p>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="person">
+          <div class="portrait bride" aria-hidden="true">
+            <!-- 📸 Replace this image with the bride's photo! -->
+            <img src="assets/reference-wedding.png" alt="Bride Photo" class="portrait-img">
+          </div>
+          <div>
+            <p class="role">କନ୍ୟା</p>
+            <h3 data-field="brideName">ଶ୍ରୀମତୀ ସୁହାସିନୀ ବେହେରା</h3>
+            <p>ସୁକନ୍ୟା ଶ୍ରୀ <span class="line"></span> ଓ</p>
+            <p>ଶ୍ରୀମତୀ <span class="line"></span> ଙ୍କ ସୁକନ୍ୟା</p>
+          </div>
+        </div>
+        <span class="card-label">୩. ବର ଓ କନ୍ୟା</span>
+      </article>
+
+      <article class="card message-card reveal" data-card-label="୪. ନିମନ୍ତ୍ରଣ ବାର୍ତ୍ତା">
+        <div class="card-floral-top" aria-hidden="true"></div>
+        <h2>ସାଦର ନିମନ୍ତ୍ରଣୀ</h2>
+        <div class="ornament"></div>
+        <p>ମହାଶୟ/ମହାଶୟା,</p>
+        <p>ଆପଣଙ୍କୁ ଜଣାଇ ଅତ୍ୟନ୍ତ ଆନନ୍ଦ ହେଉଛି ଯେ, ଆମ୍ଭ ପରିବାରର ଶୁଭ ବିବାହ ଉତ୍ସବ ନିମନ୍ତେ ଆପଣଙ୍କ ସପରିବାର ଉପସ୍ଥିତି ଆମ ପାଇଁ ଆଶୀର୍ବାଦ ସ୍ୱରୂପ।</p>
+        <p>ଦୟାକରି ଆସି ନବଦମ୍ପତିଙ୍କୁ ଆଶୀର୍ବାଦ କରିବେ ଏବଂ ଆମ ଖୁସିର ଦିନକୁ ଅଧିକ ସ୍ମରଣୀୟ କରିବେ।</p>
+        <div class="bow" aria-hidden="true"></div>
+        <div class="card-floral-bottom" aria-hidden="true"></div>
+        <span class="card-label">୪. ନିମନ୍ତ୍ରଣ ବାର୍ତ୍ତା</span>
+      </article>
+
+      <article class="card countdown-card reveal" data-card-label="୫. କାଉଣ୍ଟଡାଉନ">
+        <div class="card-floral-top" aria-hidden="true"></div>
+        <h2>ବିବାହ ପର୍ଯ୍ୟନ୍ତ ଅବଶିଷ୍ଟ</h2>
+        <div class="count-ring">
+          <span id="countDays">0</span>
+          <small>ଦିନ</small>
+        </div>
+        <div class="time-boxes">
+          <div><strong id="countHours">0</strong><span>ଘଣ୍ଟା</span></div>
+          <div><strong id="countMinutes">0</strong><span>ମିନିଟ୍</span></div>
+          <div><strong id="countSeconds">0</strong><span>ସେକେଣ୍ଡ</span></div>
+        </div>
+        <p class="date-line" data-field="weddingDateText">ତାରିଖ : ୧୫ ଜୁଲାଇ ୨୦୨୬</p>
+        <span class="card-label">୫. କାଉଣ୍ଟଡାଉନ</span>
+      </article>
+
+      <article class="card timeline-card reveal" data-card-label="୬. କାର୍ଯ୍ୟକ୍ରମ ସୂଚୀ">
+        <div class="card-floral-top" aria-hidden="true"></div>
+        <h2>କାର୍ଯ୍ୟକ୍ରମ ସୂଚୀ</h2>
+        <div class="events" id="eventTimeline"></div>
+        <span class="card-label">୬. କାର୍ଯ୍ୟକ୍ରମ ସୂଚୀ</span>
+      </article>
+
+      <article class="card venue-card reveal" data-card-label="୭. ସ୍ଥାନ">
+        <div class="card-floral-top" aria-hidden="true"></div>
+        <h2>ସ୍ଥାନ</h2>
+        <div class="venue-art" aria-hidden="true">
+          <span class="pin">⌖</span>
+        </div>
+        <p><strong data-field="venueName">ଶୁଭ ମଣ୍ଡପ</strong></p>
+        <p data-field="venueAddress">ଗ୍ରାମ/ସହର, ଜିଲ୍ଲା, ଓଡିଶା</p>
+        <div class="map-frame">
+          <iframe id="mapFrame" title="Wedding venue map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <a class="primary-btn" id="navigateBtn" target="_blank" rel="noopener">⌖ ସ୍ଥାନ ଦେଖନ୍ତୁ</a>
+        <span class="card-label">୭. ସ୍ଥାନ</span>
+      </article>
+
+      <article class="card contact-card reveal" data-card-label="୮. ଯୋଗାଯୋଗ">
+        <div class="card-floral-top" aria-hidden="true"></div>
+        <h2>ଯୋଗାଯୋଗ</h2>
+        <p>ଆପଣଙ୍କ ଉପସ୍ଥିତି ଆମ ପାଇଁ ଅମୂଲ୍ୟ।</p>
+        <div class="phone-list" id="phoneList"></div>
+        <a class="call-btn" id="callBtn" href="#">☎ କଲ କରନ୍ତୁ</a>
+        <a class="whatsapp-btn" id="whatsappBtn" target="_blank" rel="noopener">WhatsApp କରନ୍ତୁ</a>
+        <button class="share-btn" id="shareBtn" type="button">⌯ ନିମନ୍ତ୍ରଣ ସେୟାର କରନ୍ତୁ</button>
+        <span class="card-label">୮. ଯୋଗାଯୋଗ</span>
+      </article>
+
+      <article class="card details-card reveal" data-card-label="୯. ବିଶେଷ ତଥ୍ୟ">
+        <div class="card-floral-top" aria-hidden="true"></div>
+        <h2>ବିଶେଷ ତଥ୍ୟ</h2>
+        
+        <div class="detail-section">
+          <h3 class="detail-title">📸 ଆମର ହ୍ୟାଶଟ୍ୟାଗ୍</h3>
+          <div class="hashtag-box" data-field="weddingHashtag">#ShubhaVivaha2026</div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="detail-section">
+          <h3 class="detail-title">👗 ଡ୍ରେସ୍ କୋଡ୍</h3>
+          <p data-field="dressCode">ପାରମ୍ପାରିକ ଓଡ଼ିଆ ପୋଷାକ / ଏଥନିକ୍ ଓଆର୍</p>
+        </div>
+        
+        <span class="card-label">୯. ବିଶେଷ ତଥ୍ୟ</span>
+      </article>
+
+      <article class="card blessing-card reveal" data-card-label="୧୦. ଶେଷ ପୃଷ୍ଠା">
+        <div class="floral-top"></div>
+        <div class="namaste">🙏</div>
+        <p>ଆପଣଙ୍କ ଉପସ୍ଥିତି ଆମ ପାଇଁ ଅମୂଲ୍ୟ।</p>
+        <p>ସପରିବାର ଆସି ନବଦମ୍ପତିଙ୍କୁ ଆଶୀର୍ବାଦ ପ୍ରଦାନ କରିବେ।</p>
+        <h2>ଧନ୍ୟବାଦ</h2>
+        <h3>।। ଶୁଭ ବିବାହ ।।</h3>
+        <div class="floral-bottom" aria-hidden="true"></div>
+        <span class="card-label">୯. ଶେଷ ପୃଷ୍ଠା</span>
+      </article>
+    </section>
+  </main>
+
+  <div class="music-player" id="musicPlayer">
+    <button id="musicToggle" type="button" aria-label="Play background music">♫</button>
+    <span>ରୋମାଣ୍ଟିକ ମଙ୍ଗଳ ସଙ୍ଗୀତ</span>
+    <div class="music-line"><i></i></div>
+    <small id="musicStatus">Tap to play</small>
+  </div>
+
+  <audio id="bgMusic" loop preload="none"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
