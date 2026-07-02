@@ -18,10 +18,13 @@
 
 * {
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 20px;
 }
 
 body {
@@ -29,6 +32,7 @@ body {
   color: var(--ink);
   font-family: "Noto Sans Oriya", system-ui, sans-serif;
   background:
+    /* Opened card reference background with low opacity
     radial-gradient(ellipse at 50% 100%, rgba(250, 186, 76, 0.35), transparent 34rem),
     radial-gradient(circle at 12% 16%, rgba(255, 211, 116, 0.32), transparent 17rem),
     radial-gradient(circle at 88% 13%, rgba(244, 101, 72, 0.28), transparent 18rem),
@@ -37,27 +41,25 @@ body {
     radial-gradient(circle at 80% 80%, rgba(76, 175, 80, 0.12) 0 8rem, transparent 8rem),
     /* Subtle diagonal Indian pattern */
     repeating-linear-gradient(45deg, rgba(255, 211, 116, 0.05) 0px, transparent 0px 25px, rgba(217, 61, 89, 0.03) 25px, transparent 25px 50px),
-    linear-gradient(145deg, rgba(42, 6, 12, 0.97), rgba(105, 15, 18, 0.93) 45%, rgba(43, 8, 8, 0.97)),
-    url("assets/opening-demo.png") center top / cover fixed;
+    linear-gradient(145deg, rgba(42, 6, 12, 0.9), rgba(105, 15, 18, 0.85) 45%, rgba(43, 8, 8, 0.9));
   min-height: 100vh;
   overflow-x: hidden;
-}
-
-body.invite-locked {
-  overflow: hidden;
+  text-rendering: optimizeLegibility;
 }
 
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   background:
     radial-gradient(ellipse at 50% 5%, rgba(255, 220, 126, 0.2), transparent 20rem),
     radial-gradient(ellipse at 50% 92%, rgba(243, 159, 49, 0.2), transparent 18rem),
     repeating-linear-gradient(90deg, rgba(255, 204, 122, 0.045) 0 1px, transparent 1px 90px),
-    linear-gradient(rgba(31, 5, 8, 0.68), rgba(83, 13, 14, 0.66));
+    linear-gradient(rgba(31, 5, 8, 0.68), rgba(83, 13, 14, 0.66)),
+    url("assets/opened-card-reference.png") center / cover;
   backdrop-filter: blur(2px) saturate(1.12);
+  opacity: 0.1; /* Low opacity for the background image */
 }
 
 body::after {
@@ -1021,8 +1023,8 @@ body.invite-locked .cards-grid {
   box-shadow: 0 25px 55px rgba(35, 5, 5, 0.4), inset 0 0 0 2px rgba(255, 255, 255, 0.85), 0 0 40px rgba(249, 201, 126, 0.25), 0 0 60px rgba(217, 61, 89, 0.12);
   overflow: hidden;
   opacity: 0;
-  transform: translateY(2rem);
-  transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.3s ease;
+  transform: translateY(3rem) rotateX(8deg);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
 
@@ -1833,6 +1835,7 @@ body.details-mode .music-player {
 
   .hero {
     padding-top: 0.9rem;
+    padding-bottom: 3rem;
   }
 
   .envelope-shell {
@@ -1842,6 +1845,75 @@ body.details-mode .music-player {
   .open-invite::before,
   .open-invite::after {
     content: none;
+  }
+
+  .card {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .count-ring {
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .count-ring span {
+    font-size: 4rem;
+  }
+
+  .time-boxes {
+    gap: 0.5rem;
+  }
+
+  .time-boxes div {
+    min-height: 4.5rem;
+    padding: 0.5rem;
+  }
+
+  .time-boxes strong {
+    font-size: 1.8rem;
+  }
+
+  .blessing-card {
+    padding-top: 4.5rem;
+  }
+
+  .decorative-corner {
+    width: 80px;
+    height: 80px;
+    opacity: 0.6;
+  }
+
+  .rangoli-decoration {
+    width: 280px;
+    height: 280px;
+    opacity: 0.25;
+  }
+}
+
+@media (max-width: 380px) {
+  .envelope-shell {
+    width: min(95vw, 320px);
+  }
+
+  .ganesha {
+    font-size: clamp(3rem, 14vw, 3.8rem);
+  }
+
+  .hero-title {
+    font-size: clamp(1.9rem, 9vw, 2.8rem);
+  }
+
+  .open-invite {
+    width: min(95vw, 480px);
+  }
+
+  .count-ring {
+    width: 10.5rem;
+    height: 10.5rem;
+  }
+
+  .count-ring span {
+    font-size: 3.5rem;
   }
 }
 

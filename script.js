@@ -82,11 +82,18 @@ function setupEnvelope() {
   });
 
   document.querySelectorAll("[data-scroll]").forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
       document.body.classList.remove("invite-preview");
       document.body.classList.add("details-mode");
       const target = document.querySelector(button.dataset.scroll);
-      target?.scrollIntoView({ behavior: "smooth" });
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "center"
+        });
+      }
     });
   });
 
