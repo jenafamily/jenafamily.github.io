@@ -629,10 +629,99 @@ body.invite-preview .step-pill {
   box-shadow: var(--shadow), inset 0 0 0 3px rgba(198, 131, 41, 0.65), 0 0 60px rgba(249, 201, 126, 0.4), 0 0 90px rgba(217, 61, 89, 0.15);
   cursor: pointer;
   transform-style: preserve-3d;
-  animation: invitationEntrance 1s cubic-bezier(0.18, 0.82, 0.22, 1) both, invitationBreath 3.8s ease-in-out 1s infinite;
+  animation: invitationEntrance 1s cubic-bezier(0.18, 0.82, 0.22, 1) both, invitationBreath 3.8s ease-in-out 1s infinite, envelopePulse 2s ease-in-out infinite;
   transition: transform 0.45s ease, box-shadow 0.45s ease;
   overflow: visible;
   isolation: isolate;
+}
+
+.tap-here-ripple {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  border: 3px solid rgba(189, 31, 46, 0.6);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple 2s ease-out infinite;
+  z-index: 35;
+  pointer-events: none;
+}
+
+.tap-here-ripple:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+.tap-here-ripple:nth-child(3) {
+  animation-delay: 1.2s;
+}
+
+.tap-here-text {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 36;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.tap-here-finger {
+  font-size: 2.5rem;
+  animation: fingerTap 0.8s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
+
+.tap-here-label {
+  font-family: "Great Vibes", cursive;
+  font-size: 1.5rem;
+  color: var(--maroon);
+  text-shadow: 0 2px 4px rgba(255,255,255,0.8);
+  animation: pulseLabel 1.2s ease-in-out infinite;
+}
+
+@keyframes fingerTap {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(8px) scale(1.1);
+  }
+}
+
+@keyframes pulseLabel {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+  }
+}
+
+@keyframes envelopePulse {
+  0%, 100% {
+    box-shadow: var(--shadow), inset 0 0 0 3px rgba(198, 131, 41, 0.65), 0 0 60px rgba(249, 201, 126, 0.4), 0 0 90px rgba(217, 61, 89, 0.15);
+  }
+  50% {
+    box-shadow: 0 1.2rem 3.2rem rgba(14, 2, 2, 0.35), inset 0 0 0 3px rgba(198, 131, 41, 0.65), 0 0 80px rgba(249, 201, 126, 0.6), 0 0 110px rgba(217, 61, 89, 0.25);
+  }
 }
 
 /* Envelope decorative border glow */
@@ -690,6 +779,11 @@ body.invite-preview .step-pill {
 .envelope-shell.opened {
   animation: envelopeExit 2.05s cubic-bezier(0.2, 0.9, 0.22, 1) forwards;
   pointer-events: none;
+}
+
+.envelope-shell.opened .tap-here-ripple,
+.envelope-shell.opened .tap-here-text {
+  display: none;
 }
 
 .envelope-shadow {
@@ -867,6 +961,18 @@ body.invite-preview .step-pill {
   border-radius: 50%;
   transform: translateX(-50%);
   box-shadow: 0 10px 18px rgba(74, 19, 8, 0.35);
+  animation: sealPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes sealPulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    box-shadow: 0 10px 18px rgba(74, 19, 8, 0.35), 0 0 20px rgba(249, 201, 126, 0.5);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.08);
+    box-shadow: 0 10px 18px rgba(74, 19, 8, 0.35), 0 0 40px rgba(249, 201, 126, 0.8);
+  }
 }
 
 .envelope-shell.opened .seal {
@@ -886,6 +992,8 @@ body.invite-preview .step-pill {
   color: #7d4a2c;
   font-family: "Great Vibes", cursive;
   font-size: 1.55rem;
+  animation: pulseText 1.5s ease-in-out infinite;
+  text-shadow: 0 0 10px rgba(201, 132, 36, 0.5);
 }
 
 .tap-hand {
@@ -897,6 +1005,26 @@ body.invite-preview .step-pill {
   font-size: 2rem;
   transform: translateX(-50%);
   animation: tap 1.4s ease-in-out infinite;
+}
+
+@keyframes pulseText {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes tap {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
 }
 
 .open-invite {
