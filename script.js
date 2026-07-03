@@ -44,7 +44,7 @@ const WEDDING_CONFIG = {
   receptionEvent: {
     title: "Wedding Reception - ଓମ ପ୍ରକାଶ & ସମମତାରାଣୀ",
     startDateTime: "2026-07-19T18:00:00+05:30",
-    endDateTime: "2026-07-17T21:00:00+05:30",
+    endDateTime: "2026-07-19T21:00:00+05:30",
     location: "ଶ୍ରୀକୃଷ୍ଣ ମଣ୍ଡପ, ଗଛେନପଦୀ ଛକ, ବଉଳା ରୋଡ, କେନ୍ଦୁଝର, ଓଡ଼ିଶା",
     description: "Join us for the wedding reception of ଓମ ପ୍ରକାଶ & ସମମତାରାଣୀ"
   }
