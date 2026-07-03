@@ -16,7 +16,7 @@ const WEDDING_CONFIG = {
   phones: ["9438059638", "9090000370"],
   whatsappNumber: "919438059638",
   whatsappMessage: "ଶୁଭ ବିବାହ ନିମନ୍ତ୍ରଣ ପାଇଁ ଧନ୍ୟବାଦ।",
-  musicSrc: "assets/wedding-music.mp3",
+  musicSrc: "assets/music.mp3",
   weddingHashtag: "#ShubhaVivaha2026",
   dressCode: "ପାରମ୍ପାରିକ ଓଡ଼ିଆ ପୋଷାକ / ଏଥନିକ୍ ଓଆର୍",
   events: [
@@ -233,19 +233,56 @@ function setupMusic() {
   const status = document.getElementById("musicStatus");
 
   audio.src = WEDDING_CONFIG.musicSrc;
+  audio.loop = true;
+  audio.volume = 0.7; // Set default volume to 70%
 
-  toggle.addEventListener("click", async () => {
+  // Try to autoplay on page load
+  const tryAutoplay = async () => {
+    try {
+      await audio.play();
+      toggle.textContent = "🔇";
+      status.textContent = "Playing";
+    } catch (error) {
+      // Autoplay failed - user needs to interact
+      toggle.textContent = "🔊";
+      status.textContent = "Tap to play";
+    }
+  };
+
+  // Try autoplay
+  tryAutoplay();
+
+  // Also try autoplay when user first interacts with page
+  const handleFirstInteraction = async () => {
     if (audio.paused) {
       try {
         await audio.play();
-        toggle.textContent = "Ⅱ";
+        toggle.textContent = "🔇";
+        status.textContent = "Playing";
+      } catch (error) {
+        // Still failed - leave as is
+      }
+    }
+    document.removeEventListener("click", handleFirstInteraction);
+    document.removeEventListener("touchstart", handleFirstInteraction);
+  };
+
+  document.addEventListener("click", handleFirstInteraction, { once: true });
+  document.addEventListener("touchstart", handleFirstInteraction, { once: true });
+
+  toggle.addEventListener("click", async (e) => {
+    e.stopPropagation(); // Prevent double interaction
+    if (audio.paused) {
+      try {
+        await audio.play();
+        toggle.textContent = "🔇";
         status.textContent = "Playing";
       } catch (error) {
         status.textContent = "Add music file";
       }
     } else {
       audio.pause();
-      toggle.textContent = "♫";
+      toggle.textContent = "🔊";
       status.textContent = "Paused";
     }
   });
