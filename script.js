@@ -5,6 +5,7 @@ const WEDDING_CONFIG = {
   coupleFull: "ରିଙ୍କୁ ଓ ମାମା",
   weddingDate: "2026-07-16T19:30:00+05:30",
   weddingDateText: "ତାରିଖ : ୧୬ ଜୁଲାଇ ୨୦୨୬",
+  receptionDateText: "ତାରିଖ : ୧୯ ଜୁଲାଇ ୨୦୨୬",
   venueName: "ପ୍ରୀତି ଭୋଜନ (Reception)",
   venueAddress: "ଶ୍ରୀକୃଷ୍ଣ ମଣ୍ଡପ, ଛେନାପଦୀ ଛକ, ବଉଳା ରୋଡ",
   venueCity: "କେନ୍ଦୁଝର",
@@ -379,7 +380,7 @@ function setupCalendarModal() {
   // Display dates in modal
   document.getElementById('weddingDateDisplay').textContent = WEDDING_CONFIG.weddingDateText;
   // For reception, let's assume it's next day - we can add to config if needed
-  document.getElementById('receptionDateDisplay').textContent = WEDDING_CONFIG.weddingDateText;
+  document.getElementById('receptionDateDisplay').textContent = WEDDING_CONFIG.receptionDateText;
 
   // Setup Google Calendar links
   setupCalendarLinks(marriageBtn, receptionBtn);
