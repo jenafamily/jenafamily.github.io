@@ -1,6 +1,6 @@
 const WEDDING_CONFIG = {
   groomName: "ଆୟୁଷ୍ମାନ ଓମ୍ ପ୍ରକାଶ (ରିଙ୍କୁ)",
-  brideName: "ଆୟୁଷ୍ମତି ମମତାରାଣୀ (ମାମା)",
+  brideName: "ଆୟୁଷ୍ମତୀ  ମମତାରାଣୀ (ମାମା)",
   coupleShort: "ସାଦର ନିମନ୍ତ୍ରଣ",
   coupleFull: "ରିଙ୍କୁ ଓ ମାମା",
   weddingDate: "2026-07-16T19:30:00+05:30",
