@@ -5,7 +5,7 @@ const WEDDING_CONFIG = {
   coupleFull: "ରିଙ୍କୁ ଓ ମାମା",
   weddingDate: "2026-07-16T19:30:00+05:30",
   weddingDateText: "ତାରିଖ : ୧୬ ଜୁଲାଇ ୨୦୨୬",
-  venueName: "ଶ୍ରପ୍ରୀତି ଭୋଜନ (Reception)",
+  venueName: "ପ୍ରୀତି ଭୋଜନ (Reception)",
   venueAddress: "ଶ୍ରୀକୃଷ୍ଣ ମଣ୍ଡପ, ଛେନାପଦୀ ଛକ, ବଉଳା ରୋଡ",
   venueCity: "କେନ୍ଦୁଝର",
   venueState: "ଓଡ଼ିଶା",
